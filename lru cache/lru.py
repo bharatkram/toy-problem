@@ -9,12 +9,11 @@ class LRU:
         else:
             self.cache.append(x)
             if len(self.cache) > 5:
-                self.cache.pop()
+                self.cache.pop(0)
 
     def get(self, e):
         if e < len(self.cache):
-            temp = self.cache.pop(self.cache.index(x))
-            self.cache.append(temp)
+            self.cache.pop(e)
 
     def get_cache(self):
         return self.cache
