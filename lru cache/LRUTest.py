@@ -28,6 +28,8 @@ class LRUTest(unittest.TestCase):
         self.cache.put(11)
         self.cache.put(12)
         self.assertEqual(self.cache.get_cache, [4,5,10,11,12])
+        self.cache.put(5)
+        self.assertEqual(self.cache.get_cache, [4,10,11,12,5])
 
 if __name__ == '__main__':
     unittest.main()
