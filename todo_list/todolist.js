@@ -5,7 +5,7 @@ function display() {
     for (let i = 0; i < tasks.length; i++) {
         task = document.createElement("li")
         task.innerHTML = tasks[i]
-        if (done.includes(i)) {
+        if (done[i]) {
             console.log("color")
             task.style.color = "green"
         }
@@ -26,11 +26,23 @@ function clear(tasks) {
     }
 }
 
+function corrected(pos) {
+    if (pos == done.length - 1) {
+        done.pop()
+        return
+    }
+    for (let i = pos; i < done.length - 1; i++) {
+        done[i] = done[i + 1]
+    }
+    done.pop()
+}
+
 function addtask() {
     console.log("inside addtask")
     task = document.querySelector("#task").value
     if (task != "") {
         tasks.push(task)
+        done.push(false)
     }
     clear(true)
     display()
@@ -39,9 +51,9 @@ function addtask() {
 function markdone() {
     console.log("inside markdone")
     tasknum = document.querySelector("#task").value
-    tasknum = parseInt(tasknum)
+    tasknum = parseInt(tasknum) - 1
     if (tasknum < tasks.length) {
-        done.push(tasknum)
+        done[tasknum] = true
     }
     clear(true)
     display()
@@ -50,12 +62,13 @@ function markdone() {
 function remtask() {
     console.log("inside remtask")
     tasknum = document.querySelector("#task").value
-    tasknum = parseInt(tasknum)
-    if (tasknum < tasks.length) {
-        tasks.splice(tasknum - 1)
+    tasknum = parseInt(tasknum) - 1
+    if (1 <= tasknum && tasknum < tasks.length) {
+        tasks.splice(tasknum, 1)
     }
     clear(true)
-    if (tasks.length > 1) {
+    corrected(tasknum)
+    if (tasks.length > 0) {
         display()
     }
 }
