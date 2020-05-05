@@ -1,4 +1,11 @@
-function clear(tasks, done) {
+var tasks = []
+var done = []
+
+function display() {
+    
+}
+
+function clear(tasks) {
     const todo = document.getElementById("todo")
     todo.innerHTML = ""
 
@@ -7,20 +14,33 @@ function clear(tasks, done) {
         heading1.innerHTML = "Tasks to be completed:"
         todo.appendChild(heading1)
     }
-
-    // if (done) {
-    //     const heading2 = document.createElement("h2")
-    //     heading2.innerHTML = "Tasks completed:"
-    //     const comp = document.getElementById("done")
-    //     comp.innerHTML = ""
-    //     comp.appendChild(heading2)
-    // }
 }
 
-document.addEventListener('DOMContentLoader', () => {
-    var tasks = []
-    var done = []
-    document.querySelector('#add').onclick = function() {
-
+function addtask() {
+    console.log("inside addtask")
+    task = document.querySelector("#task").value
+    if (task != "") {
+        tasks.push(task)
     }
-})
+    clear(true)
+}
+
+function markdone() {
+    console.log("inside markdone")
+    tasknum = document.querySelector("#task").value
+    tasknum = parseInt(tasknum)
+    if (tasknum < tasks.length) {
+        done.push(tasknum)
+    }
+    clear(true)
+}
+
+function remtask() {
+    console.log("inside remtask")
+    tasknum = document.querySelector("#task").value
+    tasknum = parseInt(tasknum)
+    if (tasknum < tasks.length) {
+        tasks.splice(tasknum - 1)
+    }
+    clear(true)
+}

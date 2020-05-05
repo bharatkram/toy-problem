@@ -3,18 +3,16 @@
     <head>
         <title>TodoList</title>
     </head>
-    <script src="data.js"></script>
-    <script src="todolist.js"></script>
+    <script src = "todolist.js"></script>
     <body>
-        <input type = "text" id = "task" inplace = "Tasks to be done.">
-        <button id = "add">Add</button>
-        <button id = "done">Done</button>
-        <button id = "rem">Remove</button>
+        <input type = "text" id = "task" placeholder = "Tasks to be done.">
+        <button id = "add" onclick = "addtask()">Add</button>
+        <button id = "done" onclick = "markdone()">Done</button>
+        <button id = "rem" onclick = "remtask()">Remove</button>
         <div id = "todo">
+            <ol id = "list">
 
+            </ol>
         </div>
-        <!-- <div id = "done">
-
-        </div> -->
     </body>
 </html>
